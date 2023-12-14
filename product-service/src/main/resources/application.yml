@@ -8,3 +8,5 @@ spring:
       database: db_mongo
       port: 27017
       host: localhost
+server:
+  port: 8091
