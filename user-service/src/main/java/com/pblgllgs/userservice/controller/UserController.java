@@ -21,7 +21,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping
+    @GetMapping("/all")
     public Flux<UserDto> findAllUsers() {
         return userService.findAllUsers();
     }

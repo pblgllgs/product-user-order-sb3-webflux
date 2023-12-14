@@ -23,14 +23,14 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping
+    @GetMapping("/all")
     public Flux<ProductDto> findAllProducts() {
         return productService.findAllProducts();
     }
 
     @GetMapping("/{productId}")
     public Mono<ResponseEntity<ProductDto>> findProductById(@PathVariable("productId") String id) {
-        simulateRandomException();
+//        simulateRandomException();
         return productService.findProductById(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());

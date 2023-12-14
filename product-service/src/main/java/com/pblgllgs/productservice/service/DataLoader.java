@@ -26,7 +26,7 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         List<ProductDto> products = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 3; i++) {
             Faker faker = new Faker();
             ProductDto productDto = ProductDto.builder()
                     .price(faker.number().numberBetween(1, 99999))
