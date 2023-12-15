@@ -13,12 +13,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+import reactor.core.publisher.Sinks;
 
 @Service
 @RequiredArgsConstructor
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final Sinks.Many<ProductDto> sink;
 
     public Flux<ProductDto> findAllProducts() {
         return productRepository.findAll().map(UtilMapper::toDto);
@@ -38,7 +40,8 @@ public class ProductService {
         return productDtoMono
                 .map(UtilMapper::toEntity)
                 .flatMap(productRepository::insert)
-                .map(UtilMapper::toDto);
+                .map(UtilMapper::toDto)
+                .doOnNext(sink::tryEmitNext);
     }
 
     public Mono<ProductDto> updateProduct(String id, Mono<ProductDto> productDtoMono) {

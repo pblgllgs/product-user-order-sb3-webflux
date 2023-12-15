@@ -43,3 +43,9 @@ Xproduct-service/src/main/java/com/pblgllgs/productservice/ProductServiceApplica
 Qproduct-service/src/main/java/com/pblgllgs/productservice/service/DataLoader.java,a\2\a2c7dc04484490af4feea7fdce506f112f2bc2af
 …
 Uproduct-service/src/main/java/com/pblgllgs/productservice/service/ProductService.java,c\7\c75478b4fb5376d7466cdae0fbdb19f8d23e9434
+€
+Pproduct-service/src/main/java/com/pblgllgs/productservice/config/SinkConfig.java,4\f\4f02544d5cd1f7c30bc329b20c10eea88b4ab22d
+‘
+aproduct-service/src/main/java/com/pblgllgs/productservice/controller/ProductStreamController.java,0\e\0e19dfa6cad03e736599120da68f4d129b71d9ce
+}
+Mproduct-service/src/main/java/com/pblgllgs/productservice/dto/ProductDto.java,b\2\b2a2f5d79eb4cfcec6708aab831c8297da3ac703

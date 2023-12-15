@@ -14,8 +14,10 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Component
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         List<ProductDto> products = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 50; i++) {
             Faker faker = new Faker();
             ProductDto productDto = ProductDto.builder()
                     .price(faker.number().numberBetween(1, 99999))
@@ -36,7 +38,14 @@ public class DataLoader implements CommandLineRunner {
         }
 
         Flux.fromIterable(products)
+                .concatWith(newProducts())
                 .flatMap(p -> productService.saveProduct(Mono.just(p)))
                 .subscribe(System.out::println);
+    }
+
+    private Flux<ProductDto> newProducts(){
+         return Flux.range(1, 1000)
+                 .delayElements(Duration.ofSeconds(2))
+                 .map( i -> new ProductDto("product-" + i, ThreadLocalRandom.current().nextInt(10,100)));
     }
 }
